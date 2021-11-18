@@ -1,6 +1,6 @@
-name: kflutter_sdk_scaffold
+name: alsc_saas_kflutter_sdk_scaffold
 description: A new Flutter project.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/yangbo001/kflutter_sdk_scaffold
 
 environment:

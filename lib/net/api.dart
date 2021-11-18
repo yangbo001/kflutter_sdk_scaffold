@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'dart:convert' as convert;
-import 'package:kflutter_sdk_scaffold/net/config/envs.dart';
-import 'package:kflutter_sdk_scaffold/net/http.dart';
-import 'package:kflutter_sdk_scaffold/net/response.dart';
+import '../net/config/envs.dart';
+import '../net/http.dart';
+import '../net/response.dart';
 
 import 'config/env_urls.dart';
 import 'log_interceptor.dart';

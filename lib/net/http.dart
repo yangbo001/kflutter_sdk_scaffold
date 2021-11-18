@@ -1,4 +1,4 @@
-import 'package:kflutter_sdk_scaffold/net/response.dart';
+import '../net/response.dart';
 
 import 'api.dart';
 
