@@ -18,5 +18,6 @@ export 'net/api.dart';
 export 'net/config/envs.dart';
 export 'net/http.dart';
 export 'net/response.dart';
-
-
+export 'global_func.dart';
+export 'base_app.dart';
+export 'base_page.dart';

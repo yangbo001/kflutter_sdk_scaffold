@@ -96,18 +96,28 @@ class _HttpRequest implements Http {
   }
 
   @override
-  void cancel() {}
+  void cancel() {
+    token.cancel();
+  }
 
   @override
   Future<ApiResponse<T>> post<T>(String action, {Map<String, dynamic>? requestBody, ObjectConvertFunc<T>? objectConvertor, ArrayConvertFunc<T>? arrayConvertor}) async {
-    Response resp = await _dio.post(action, queryParameters: requestBody, options: Options(headers: _headers), cancelToken: token);
-    return _handleResp(resp, objectConvertor: objectConvertor, arrayConvertor: arrayConvertor);
+    try {
+      Response resp = await _dio.post(action, queryParameters: requestBody, options: Options(headers: _headers), cancelToken: token);
+      return _handleResp(resp, objectConvertor: objectConvertor, arrayConvertor: arrayConvertor);
+    } catch (e) {
+      return ApiResponse.pack(code: -1, message: e.toString());
+    }
   }
 
   @override
   Future<ApiResponse<T>> get<T>(String action, {Map<String, dynamic>? requestBody, ObjectConvertFunc<T>? objectConvertor, ArrayConvertFunc<T>? arrayConvertor}) async {
-    Response resp = await _dio.get(action, queryParameters: requestBody, options: Options(headers: _headers), cancelToken: token);
-    return _handleResp(resp, objectConvertor: objectConvertor, arrayConvertor: arrayConvertor);
+    try {
+      Response resp = await _dio.get(action, queryParameters: requestBody, options: Options(headers: _headers), cancelToken: token);
+      return _handleResp(resp, objectConvertor: objectConvertor, arrayConvertor: arrayConvertor);
+    } catch (e) {
+      return ApiResponse.pack(code: -1, message: e.toString());
+    }
   }
 
   ApiResponse<T> _handleResp<T>(Response resp, {ObjectConvertFunc<T>? objectConvertor, ArrayConvertFunc<T>? arrayConvertor}) {

@@ -1,6 +1,6 @@
 name: alsc_saas_kflutter_sdk_scaffold
 description: A new Flutter project.
-version: 0.0.2
+version: 0.2.8
 homepage: https://github.com/yangbo001/kflutter_sdk_scaffold
 
 environment:
@@ -12,6 +12,19 @@ dependencies:
     sdk: flutter
   # 网络框架
   dio: ^4.0.3
+  # 尺寸
+  flutter_screenutil: ^5.0.0+2
+  # 页面研发架构
+  flutter_bloc: ^7.3.1
+  # loading progress
+  flutter_easyloading: ^3.0.3
+  # toast
+  fluttertoast: ^8.0.8
+  # flutter_boost路由框架
+  flutter_boost:
+    git:
+      url: 'git@github.com:alibaba/flutter_boost.git'
+      ref: 'v3.0-null-safety-preview.16'
 
 dev_dependencies:
   flutter_test:
