@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boost/flutter_boost.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:kflutter_sdk_resource/generated/l10n.dart';
 
-/// 创建一个自定义的Binding，继承和with的关系如下，里面什么都不用写(flutter boost)
+// 创建一个自定义的Binding，继承和with的关系如下，里面什么都不用写(flutter boost)
 class _CustomFlutterBinding extends WidgetsFlutterBinding with BoostFlutterBinding {}
 
 /// main-runApp()主函数的app基类
 abstract class BaseApp extends StatelessWidget with GlobalPageVisibilityObserver {
   BaseApp({Key? key}) : super(key: key) {
-    /// 这里的CustomFlutterBinding调用务必不可缺少，用于控制Boost状态的resume和pause
+    // 这里的CustomFlutterBinding调用务必不可缺少，用于控制Boost状态的resume和pause
     _CustomFlutterBinding();
     PageVisibilityBinding.instance.addGlobalObserver(this);
   }
@@ -21,9 +23,23 @@ abstract class BaseApp extends StatelessWidget with GlobalPageVisibilityObserver
     return ScreenUtilInit(
       designSize: appDesignSize(),
       builder: () => MaterialApp(
+        // 国际化
+        localizationsDelegates: const [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
+        localeListResolutionCallback: (locales, supportedLocales) {
+          print(locales);
+          return;
+        },
+        // loading
         builder: EasyLoading.init(),
-        debugShowCheckedModeBanner: false,
+        // title
         title: appTitle(),
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           brightness: Brightness.light,
           primaryColor: Colors.blue,
@@ -42,6 +58,7 @@ abstract class BaseApp extends StatelessWidget with GlobalPageVisibilityObserver
             caption: TextStyle(fontSize: 12.sp, color: AppColors.txtThird),
           ),
         ),
+        // flutter boost
         home: FlutterBoostApp((RouteSettings settings, String? uniqueId) => flutterBoostRouter()[settings.name]?.call(settings, uniqueId)),
       ),
     );

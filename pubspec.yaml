@@ -1,6 +1,6 @@
 name: alsc_saas_kflutter_sdk_scaffold
 description: A new Flutter project.
-version: 0.2.8
+version: 0.3.0
 homepage: https://github.com/yangbo001/kflutter_sdk_scaffold
 
 environment:
@@ -10,6 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # kmobile 公用资源
+  kflutter_sdk_resource:
+    git: git@gitlab.alibaba-inc.com:alsc-saasfe-native/kflutter_sdk_resource.git
   # 网络框架
   dio: ^4.0.3
   # 尺寸
